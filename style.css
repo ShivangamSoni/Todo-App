@@ -174,9 +174,6 @@ body {
 @media screen and (max-width: 700px) {
     /* Header index.html Style */
     .header-all {
-        margin: 5px 50px;
-        display: flex;
-        align-items: center;
         justify-content: space-evenly;
     }
     /* Header task.html Style */
