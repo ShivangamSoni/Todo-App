@@ -213,6 +213,8 @@ body {
         overflow: hidden;
     }
     .main-all .card a {
+        text-align: left;
+        padding-left: 2rem;
         font-size: 20px;
         color: #333;
         margin: 15px;
