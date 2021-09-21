@@ -1,0 +1,341 @@
+body {
+  font-size: 10px;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* || Both Sections Common Base Style & Modifiers */
+.all,
+.one {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  padding: 1rem;
+}
+.all--blur,
+.one--blur {
+  filter: blur(0.3rem);
+}
+.all--hidden,
+.one--hidden {
+  display: none;
+}
+
+/* || All Tasks Head */
+.all__head {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.allHead__title {
+  font-size: 2.5rem;
+}
+.allTitle__span {
+  font-weight: 100;
+  color: #b7b7b7;
+}
+.allHead__link {
+  text-decoration: none;
+  outline: none;
+  font-size: 1.6rem;
+  color: #e74c3c;
+  cursor: pointer;
+}
+.allHead__link > span {
+  display: none;
+  pointer-events: none;
+}
+
+/* || Individual Tasks Head */
+.one__head {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.oneHead__title {
+  font-size: 2.5rem;
+  text-align: center;
+  order: 2;
+}
+.oneTitle__span {
+  font-weight: normal;
+  background-color: #fff;
+  padding: 0 0.5rem;
+}
+.oneHead__link {
+  text-decoration: none;
+  outline: none;
+  font-size: 1.6rem;
+  color: #e74c3c;
+  padding: 1rem;
+  cursor: pointer;
+}
+.oneHead__link > span {
+  display: none;
+}
+
+/* Empty */
+.empty {
+  text-align: center;
+  font-size: 1.5rem;
+  color: hsl(0, 0%, 50%);
+}
+.empty--hidden {
+  display: none;
+}
+/* Common Main & Card */
+.main {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.card {
+  border: 1px solid #f4b1aa;
+  border-radius: 10px;
+  box-shadow: 7px 7px 5px #c3c3c3a1;
+  margin: 1rem 0;
+  overflow: hidden;
+  position: relative;
+}
+.card__task {
+  text-align: center;
+}
+.card__task--complete {
+  color: #e74c3c;
+  text-decoration: 2px line-through red;
+}
+.card__task--pending {
+  text-align: start;
+  padding-left: 1.5rem;
+}
+/* All Tasks Card */
+.mainAll .card__title {
+  white-space: nowrap;
+  display: block;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #000;
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+.mainAll .card__list {
+  display: none;
+}
+.mainAll .card__addTask {
+  display: none;
+}
+.mainAll .card__deleteList {
+  position: sticky;
+  bottom: 50%;
+  left: 100%;
+  transform: translate(-100%, 50%);
+  text-decoration: none;
+  outline: none;
+  font-size: 1rem;
+  color: #e74c3c;
+  cursor: pointer;
+}
+/* Individual Tasks Card */
+.mainOne {
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+.mainOne .card {
+  flex: 0 90%;
+  overflow: auto;
+  height: 400px;
+  color: black;
+  padding: 0 0 1rem;
+  text-align: center;
+}
+.mainOne .card__title {
+  display: block;
+  font-size: 1.6rem;
+  text-decoration: none;
+  white-space: normal;
+  position: relative;
+  padding: 1rem 3rem 0.5rem;
+  margin-bottom: 1rem;
+  color: #f07568;
+}
+.mainOne .card__title::after {
+  display: block;
+  content: "";
+  width: 90%;
+  border: 1px solid gray;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.mainOne .card__list {
+  display: block;
+  list-style-type: none;
+  font-size: 1.2rem;
+  line-height: 2;
+}
+.mainOne .card__addTask {
+  position: sticky;
+  bottom: 0;
+  left: 100%;
+  transform: translate(-100%, 0);
+  text-decoration: none;
+  outline: none;
+  font-size: 1rem;
+  color: #e74c3c;
+  cursor: pointer;
+}
+.mainOne .card__deleteList {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  /* All Task Head */
+  .allHead__title {
+    font-size: 3rem;
+  }
+  .allHead__link {
+    font-size: 2rem;
+  }
+  .allHead__link > span {
+    display: inline;
+    color: #ccc;
+    font-weight: 100;
+    padding-left: 1rem;
+  }
+  /* Individual Tasks Head */
+  .one__head {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+  .oneHead__title {
+    font-size: 3rem;
+    width: 75%;
+    order: unset;
+    border-bottom: 1px solid #b7b7b7;
+    line-height: 5px;
+    margin: 0 0 2.5rem;
+  }
+  .oneHead__link {
+    padding: 0;
+  }
+  .oneHead__link > span {
+    display: inline;
+    color: #333;
+    font-weight: 200;
+    padding-left: 1rem;
+  }
+  /* All Task Main & Card */
+  .mainAll {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .mainAll .card {
+    flex: 0 0 30%;
+    overflow: auto;
+    height: 300px;
+    color: black;
+    padding: 0 0 1rem;
+    text-align: center;
+  }
+  .mainAll .card__title {
+    position: relative;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1em;
+    color: #f07568;
+    white-space: normal;
+  }
+  .mainAll .card__title::after {
+    display: block;
+    content: "";
+    width: 90%;
+    border: 1px solid gray;
+    background: gray;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .mainAll .card__list {
+    display: block;
+    list-style-type: none;
+    font-size: 1.2rem;
+    line-height: 2;
+  }
+  .mainAll .card__deleteList {
+    bottom: 0;
+  }
+  /* Individual Task Card */
+  .mainOne .card {
+    flex-basis: 55%;
+  }
+}
+
+/* Modal */
+.modal {
+  background-color: rgba(0, 0, 0, 0.04);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.modal--hidden {
+  display: none;
+}
+.modal__close {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+#modal:target,
+#modal:target .modal-content {
+  display: block;
+}
+.modal__content {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #f4b1aa;
+  border-radius: 5px;
+  box-shadow: 7px 7px 5px grey;
+  padding: 20px 50px;
+  text-align: center;
+  max-width: 90%;
+}
+.modal__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f07568;
+  margin: 0 0 20px;
+}
+.modal__input {
+  border: 1px solid #f4b1aa;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px #c3c3c3a1;
+  font-size: 1.5rem;
+  max-width: 100%;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+.modal__btn {
+  background-color: #e74c3c;
+  color: white;
+  border: 0;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: large;
+  margin: 10px 0 0;
+}
