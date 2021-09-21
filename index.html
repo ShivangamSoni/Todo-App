@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <title>Todo App</title>
-    </head>
-    <body>
-        <header class="header-all">
-            <h1>Tasks <span>Lists</span></h1>
-            <a href="#modal">
-                <i class="fas fa-plus-circle"></i>
-                <span>Add List</span>
-            </a>
-        </header>
-        <main class="main main-all">
-            <div class="card">
-                <a href="./task.html">Trip to Paris</a>
-                <hr />
-                <p class="task completed">Completed Task</p>
-                <p class="task pending">
-                    <input type="checkbox" name="" id="" />
-                    Pending Task
-                </p>
-            </div>
-
-            <div class="card">
-                <a href="./task.html">Trip to Paris</a>
-                <hr />
-                <p class="task completed">Completed Task</p>
-                <p class="task pending">
-                    <input type="checkbox" name="" id="" />
-                    Pending Task
-                </p>
-            </div>
-
-            <div class="card">
-                <a href="./task.html">Trip to Paris</a>
-                <hr />
-                <p class="task completed">Completed Task</p>
-                <p class="task pending">
-                    <input type="checkbox" name="" id="" />
-                    Pending Task
-                </p>
-            </div>
-        </main>
-
-        <!-- Add New List Modal -->
-        <div class="modal" id="modal">
-            <a href="#"></a>
-            <div class="modal-content">
-                <h3>Add New List</h3>
-                <input type="text" name="newList" id="newList" />
-                <br />
-                <button type="submit">ADD</button>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/script.js" defer></script>
+    <title>ToDo App</title>
+  </head>
+  <body>
+    <div class="all">
+      <header class="all__head">
+        <h1 class="allHead__title">Tasks <span class="allTitle__span">Lists</span></h1>
+        <a class="fas fa-plus-circle allHead__link" id="addList" data-for="newList" data-section="all"><span>Add List</span></a>
+      </header>
+      <div class="empty">No Todo Lists Yet, Click on <strong>Add List</strong> to Create One.</div>
+      <main class="main mainAll">
+        <div class="card">
+          <a href="" class="card__title" data-id="1">Sample Task</a>
+          <ul class="card__list">
+            <li class="card__task card__task--complete">Completed Task</li>
+            <li class="card__task card__task--pending"><input type="checkbox" /> Pending Task</li>
+          </ul>
+          <a class="fas fa-plus-circle card__addTask" id="addTask" data-for="newItem" data-section="one"></a>
+          <a class="fas fa-trash card__deleteList" id="deleteList"></a>
         </div>
-    </body>
+      </main>
+    </div>
+
+    <div class="one one--hidden">
+      <header class="one__head">
+        <h1 class="oneHead__title"><span class="oneTitle__span">Selected List</span></h1>
+        <a class="fas fa-arrow-circle-left oneHead__link" id="goBack"><span>Back</span></a>
+      </header>
+
+      <main class="main mainOne">
+        <div class="card">
+          <a href="" class="card__title">Sample List</a>
+          <ul class="card__list">
+            <li class="card__task card__task--complete">Completed Task</li>
+            <li class="card__task card__task--pending"><input type="checkbox" /> Pending Task</li>
+          </ul>
+          <a class="fas fa-plus-circle card__addTask" id="addTask" data-for="newItem" data-section="one"></a>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add New List Modal -->
+    <div class="modal modal--hidden" id="newListModal" data-modal-type="newList" data-section="all">
+      <a class="modal__close"></a>
+      <div class="modal__content">
+        <h3 class="modal__title">Add New List</h3>
+        <input type="text" name="newList" id="newListInput" class="modal__input" />
+        <button type="submit" class="modal__btn" id="newListSubmit">ADD</button>
+      </div>
+    </div>
+    <!-- Add New Item Modal -->
+    <div class="modal modal--hidden" id="newItemModal" data-modal-type="newItem" data-section="one">
+      <a class="modal__close"></a>
+      <div class="modal__content">
+        <h3 class="modal__title">Add New Item</h3>
+        <input type="text" name="newItem" id="newItemInput" class="modal__input" />
+        <button type="submit" class="modal__btn" id="newItemSubmit">ADD</button>
+      </div>
+    </div>
+  </body>
 </html>
