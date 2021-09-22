@@ -161,7 +161,7 @@ function completeTask(e) {
 
 function deleteList(e) {
   const id = e.target.dataset.id;
-  const selectedList = tasksList.findIndex((item) => item.id !== id);
+  const selectedList = tasksList.findIndex((item) => item.id === id);
   tasksList.splice(selectedList, 1);
   saveAndRender();
 }
