@@ -5,6 +5,7 @@ let activeSection = false;
 const allTasksContainer = document.querySelector(".mainAll");
 const oneTasksContainer = document.querySelector(".mainOne");
 const empty = document.querySelector(".empty");
+const cardTemplate = document.querySelector("#card-template");
 
 const goBackBtn = document.querySelector("#goBack");
 goBackBtn.addEventListener("click", toggleSections);
@@ -18,6 +19,9 @@ modalCloseBtns.forEach((btn) => btn.addEventListener("click", closeModal));
 const modalSubmit = document.querySelectorAll(".modal__btn");
 modalSubmit.forEach((btn) => btn.addEventListener("click", submit));
 
+const modalInput = document.querySelectorAll(".modal__input");
+modalInput.forEach((input) => input.addEventListener("keyup", submit));
+
 render();
 
 function render() {
@@ -27,8 +31,10 @@ function render() {
     empty.classList.add("empty--hidden");
   }
 
+  clearElements(allTasksContainer);
+  clearElements(oneTasksContainer);
+
   if (activeSection === false) {
-    clearElements(allTasksContainer);
     tasksList.forEach((task) => {
       const card = createCard(task);
       const completeChecks = card.querySelectorAll("input");
@@ -41,7 +47,6 @@ function render() {
     const listTitles = document.querySelectorAll(".card__title");
     listTitles.forEach((title) => title.addEventListener("click", openIndividualList));
   } else {
-    clearElements(oneTasksContainer);
     const card = createCard(tasksList[activeSection]);
     oneTasksContainer.appendChild(card);
 
@@ -57,45 +62,28 @@ function render() {
 }
 
 function createCard(task) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+  const card = document.importNode(cardTemplate.content.firstElementChild, true);
 
-  const title = document.createElement("a");
-  title.classList.add("card__title");
+  const title = card.querySelector(".card__title");
   title.dataset.id = task.id;
   title.textContent = task.title;
 
-  card.appendChild(title);
-
-  const list = document.createElement("ul");
-  list.classList.add("card__list");
+  const list = card.querySelector(".card__list");
   task.tasks.forEach((item) => {
-    const listItem = document.createElement("li");
-    listItem.classList.add("card__task");
+    const taskItems = document.importNode(cardTemplate.content.lastElementChild, true);
+    let listItem;
     if (item.complete) {
-      listItem.classList.add("card__task--complete");
+      listItem = taskItems.querySelector(".card__task--complete");
     } else {
-      listItem.classList.add("card__task--pending");
-      const input = document.createElement("input");
-      input.setAttribute("type", "checkbox");
-      input.dataset.id = task.id;
-      listItem.appendChild(input);
+      listItem = taskItems.querySelector(".card__task--pending");
+      listItem.firstElementChild.dataset.id = task.id;
     }
     listItem.append(` ${item.desc}`);
     list.appendChild(listItem);
   });
-  card.appendChild(list);
 
-  const addBtn = document.createElement("a");
-  addBtn.classList.add("fas", "fa-plus-circle", "card__addTask");
-  addBtn.dataset.for = "newItem";
-  addBtn.dataset.section = "one";
-  card.appendChild(addBtn);
-
-  const deleteBtn = document.createElement("a");
-  deleteBtn.classList.add("fas", "fa-trash", "card__deleteList");
+  const deleteBtn = card.querySelector(".card__deleteList");
   deleteBtn.dataset.id = task.id;
-  card.appendChild(deleteBtn);
 
   return card;
 }
@@ -139,7 +127,15 @@ function openIndividualList(e) {
 }
 
 function submit(e) {
-  const input = e.target.previousElementSibling;
+  let input;
+  if (e.target.className === "modal__input") {
+    // If "Enter Key" is Pressed Create Input Else Return
+    if (e.keyCode === 13) input = e.target;
+    else return;
+  } else {
+    input = e.target.previousElementSibling;
+  }
+
   const value = input.value.trim();
   if (value === "") return;
   if (activeSection !== false) {

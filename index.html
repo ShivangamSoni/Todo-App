@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js" defer></script>
     <title>ToDo App</title>
@@ -22,17 +17,7 @@
         <a class="fas fa-plus-circle allHead__link" id="addList" data-for="newList" data-section="all"><span>Add List</span></a>
       </header>
       <div class="empty">No Todo Lists Yet, Click on <strong>Add List</strong> to Create One.</div>
-      <main class="main mainAll">
-        <div class="card">
-          <a href="" class="card__title" data-id="1">Sample Task</a>
-          <ul class="card__list">
-            <li class="card__task card__task--complete">Completed Task</li>
-            <li class="card__task card__task--pending"><input type="checkbox" /> Pending Task</li>
-          </ul>
-          <a class="fas fa-plus-circle card__addTask" id="addTask" data-for="newItem" data-section="one"></a>
-          <a class="fas fa-trash card__deleteList" id="deleteList"></a>
-        </div>
-      </main>
+      <main class="main mainAll"></main>
     </div>
 
     <div class="one one--hidden">
@@ -41,16 +26,7 @@
         <a class="fas fa-arrow-circle-left oneHead__link" id="goBack"><span>Back</span></a>
       </header>
 
-      <main class="main mainOne">
-        <div class="card">
-          <a href="" class="card__title">Sample List</a>
-          <ul class="card__list">
-            <li class="card__task card__task--complete">Completed Task</li>
-            <li class="card__task card__task--pending"><input type="checkbox" /> Pending Task</li>
-          </ul>
-          <a class="fas fa-plus-circle card__addTask" id="addTask" data-for="newItem" data-section="one"></a>
-        </div>
-      </main>
+      <main class="main mainOne"></main>
     </div>
 
     <!-- Add New List Modal -->
@@ -71,5 +47,18 @@
         <button type="submit" class="modal__btn" id="newItemSubmit">ADD</button>
       </div>
     </div>
+
+    <template id="card-template">
+      <div class="card">
+        <a class="card__title" data-id=""></a>
+        <ul class="card__list"></ul>
+        <a class="fas fa-plus-circle card__addTask" id="addTask" data-for="newItem" data-section="one"></a>
+        <a class="fas fa-trash card__deleteList" id="deleteList"></a>
+      </div>
+      <div class="task-items">
+        <li class="card__task card__task--complete"></li>
+        <li class="card__task card__task--pending"><input type="checkbox" data-id="" /></li>
+      </div>
+    </template>
   </body>
 </html>
