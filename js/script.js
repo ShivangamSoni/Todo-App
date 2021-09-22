@@ -182,6 +182,7 @@ function openModal(e) {
   const modalData = e.target.dataset.for;
   const modal = document.querySelector(`div[data-modal-type="${modalData}"]`);
   modal.classList.remove("modal--hidden");
+  modal.querySelector(".modal__input").focus();
 }
 
 function closeModal(e) {
